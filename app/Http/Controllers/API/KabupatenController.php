@@ -37,7 +37,7 @@ class KabupatenController extends Controller
 
         $kabupaten = Kabupaten::all();
 
-        return ResponseFormatter::success($kabupaten,"success get diseases");
+        return ResponseFormatter::success($kabupaten,"success get kabupaten");
 
     }
 

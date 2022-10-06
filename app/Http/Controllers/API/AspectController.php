@@ -19,7 +19,7 @@ class AspectController extends Controller
         ]);
         return ResponseFormatter::success(
             $aspect,
-            "Success post kabupaten"
+            "Success post aspect"
         );
     }
 
@@ -37,7 +37,7 @@ class AspectController extends Controller
 
         $aspect = Aspect::all();
 
-        return ResponseFormatter::success($aspect,"success get diseases");
+        return ResponseFormatter::success($aspect,"success get aspect");
 
     }
 }

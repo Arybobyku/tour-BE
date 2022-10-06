@@ -13,7 +13,7 @@ class TouristAttraction extends Model
         'name',
         'description',
         'image',
-        'position',
+        'location',
         'latitude',
         'longitude',
     ];

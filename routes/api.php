@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AspectController;
 use App\Http\Controllers\API\KabupatenController;
+use App\Http\Controllers\API\TouristAttractionController;
 use App\Models\Kabupaten;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,3 +30,6 @@ Route::get('kabupaten',[KabupatenController::class,'all']);
 //Aspect
 Route::post('aspect',[AspectController::class,'add']);
 Route::get('aspect',[AspectController::class,'all']);
+//touristAttraction
+Route::post('touristAttraction',[TouristAttractionController::class,'add']);
+Route::get('touristAttraction',[TouristAttractionController::class,'all']);
