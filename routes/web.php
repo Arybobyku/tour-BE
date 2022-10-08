@@ -17,8 +17,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 require __DIR__.'/auth.php';
+
+Route::middleware('auth')->group(function () {
+    Route::view('about', 'about')->name('about');
+
+    Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+
+    Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+    Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+
+    Route::get('kabupaten', [\App\Http\Controllers\KabupatenController::class, 'show'])->name('kabupaten.show');
+});

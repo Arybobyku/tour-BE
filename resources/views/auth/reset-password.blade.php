@@ -1,51 +1,56 @@
 <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+    <div class="flex flex-col overflow-y-auto md:flex-row">
+        <div class="h-32 md:h-auto md:w-1/2">
+            <img aria-hidden="true" class="object-cover w-full h-full"
+                 src="{{ asset('images/forgot-password-office.jpeg') }}" alt="Office"/>
+        </div>
+        <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+            <div class="w-full">
+                <h1 class="mb-4 text-xl font-semibold text-gray-700">
+                    {{__('Forgot password')}}
+                </h1>
 
-        <form method="POST" action="{{ route('password.update') }}">
-            @csrf
+                <!-- Validation Errors -->
+                <x-auth-validation-errors class="mb-4" :errors="$errors"/>
 
-            <!-- Password Reset Token -->
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                <form method="POST" action="{{ route('password.update') }}">
+                @csrf
 
-            <!-- Email Address -->
-            <div>
-                <x-input-label for="email" :value="__('Email')" />
+                    <!-- Password Reset Token -->
+                    <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+                    <div class="mt-4">
+                        <x-label for="email" :value="__('Email')"/>
+                        <x-input type="email"
+                                 class="block w-full"
+                                 id="email"
+                                 name="email"
+                                 value="{{ old('email', $request->email) }}"
+                                 required
+                                 autofocus/>
+                    </div>
 
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    <div class="mt-4">
+                        <x-label :value="__('Password')"/>
+                        <x-input type="password"
+                                 class="block w-full"
+                                 name="password"
+                                 required/>
+                    </div>
+
+                    <div class="mt-4">
+                        <x-label :value="__('Confirm Password')"/>
+                        <x-input type="password"
+                                 class="block w-full"
+                                 name="password_confirmation"
+                                 required/>
+                    </div>
+
+                    <x-button class="mt-4 w-full">
+                        {{ __('Reset Password') }}
+                    </x-button>
+                </form>
             </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
-
-                <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required />
-
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password_confirmation" required />
-
-                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-primary-button>
-                    {{ __('Reset Password') }}
-                </x-primary-button>
-            </div>
-        </form>
-    </x-auth-card>
+        </div>
+    </div>
 </x-guest-layout>

@@ -1,17 +1,26 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        {{ __('Dashboard') }}
     </x-slot>
+    <div class="flex gap-x-10">
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
-                </div>
+        <a href="{{ route('kabupaten.show') }}" class="bg-white w-auto p-10 rounded-lg flex-col items-center drop-shadow-md">
+            <div class="font-bold text-2xl">
+                Kabupaten
             </div>
-        </div>
+            <div class="font-light text-6xl mt-5 text-center">
+                {{count($kabupaten)}}
+            </div>
+        </a>
+
+        <a href="" class="bg-white p-10 rounded-lg flex-col items-center drop-shadow-md">
+            <div class="font-bold text-2xl">
+                Objek Wisata
+            </div>
+            <div class="font-light text-6xl mt-5 text-center">
+                0
+            </div>
+        </a>
+
     </div>
 </x-app-layout>
